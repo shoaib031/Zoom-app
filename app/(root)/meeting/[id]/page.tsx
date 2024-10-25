@@ -1,7 +1,7 @@
-import React from "react";
+import { NextPage } from "next";
 
-const Meeting = ({ params }: { params: { id: string } }) => {
-  return <div>Meeting Room: # {params.id}</div>;
+const Meeting: NextPage<{ params: { id: string } }> = ({ params }) => {
+  return <div>Meeting Room: #{params.id}</div>;
 };
 
 export default Meeting;
