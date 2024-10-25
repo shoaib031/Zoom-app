@@ -10,13 +10,8 @@ const Meeting: React.FC<MeetingProps> = ({ params }) => {
   return <div>Meeting Room: # {params.id}</div>;
 };
 
-// Add getServerSideProps here, outside the Meeting component
-export async function getServerSideProps(context: { params: { id: string } }) {
-  return {
-    props: {
-      params: context.params,
-    },
-  };
-}
-
+// Export the component as the default export
 export default Meeting;
+
+// Use the following function to specify dynamic route segments (if needed):
+export const dynamic = "force-dynamic"; // This will ensure the component is rendered dynamically
