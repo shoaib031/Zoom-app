@@ -40,3 +40,12 @@
 //   return { props: { params: context.params } };
 // }
 // export default Meeting;
+import React from 'react'
+
+const page = () => {
+  return (
+    <div>page</div>
+  )
+}
+
+export default page
