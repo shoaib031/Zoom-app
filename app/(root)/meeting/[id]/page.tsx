@@ -27,16 +27,16 @@
 // export default Meeting;
 
 
-import { GetServerSidePropsContext } from 'next';
-type MeetingProps = {
-  params: {
-    id: string;
-  };
-};
-const Meeting = ({ params }: MeetingProps) => {
-  return <div>Meeting Room: #{params.id}</div>;
-};
-export async function getServerSideProps(context: GetServerSidePropsContext) {
-  return { props: { params: context.params } };
-}
-export default Meeting;
+// import { GetServerSidePropsContext } from 'next';
+// type MeetingProps = {
+//   params: {
+//     id: string;
+//   };
+// };
+// const Meeting = ({ params }: MeetingProps) => {
+//   return <div>Meeting Room: #{params.id}</div>;
+// };
+// export async function getServerSideProps(context: GetServerSidePropsContext) {
+//   return { props: { params: context.params } };
+// }
+// export default Meeting;
