@@ -1,17 +1,17 @@
-// // // app/meeting/[id]/page.tsx
-// // import { NextPage } from "next";
+// app/meeting/[id]/page.tsx
+import { NextPage } from "next";
 
-// // type MeetingProps = {
-// //   params: {
-// //     id: string;
-// //   };
-// // };
+type MeetingProps = {
+  params: {
+    id: string;
+  };
+};
 
-// // const Meeting: NextPage<MeetingProps> = ({ params }) => {
-// //   return <div>Meeting Room: #{params.id}</div>;
-// // };
+const Meeting: NextPage<MeetingProps> = ({ params }) => {
+  return <div>Meeting Room: #{params.id}</div>;
+};
 
-// // export default Meeting;
+export default Meeting;
 
 
 // type MeetingProps = {
@@ -40,12 +40,3 @@
 //   return { props: { params: context.params } };
 // }
 // export default Meeting;
-import React from 'react'
-
-const page = () => {
-  return (
-    <div>page</div>
-  )
-}
-
-export default page
