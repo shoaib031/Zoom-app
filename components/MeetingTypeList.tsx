@@ -1,16 +1,67 @@
 "use client";
 
 import { useState } from "react";
-import HomeCard from "./Homecard";
+import HomeCard from "./HomeCard";
 import MeetingModal from "./MeetingModal";
+import { useUser } from "@clerk/nextjs";
+import { Call, useStreamVideoClient } from "@stream-io/video-react-sdk";
+import { useRouter } from "next/navigation";
+import { Description } from "@radix-ui/react-alert-dialog";
+import { useToast } from "@/hooks/use-toast";
 
 const MeetingTypeList = () => {
+  const router = useRouter();
   const [meetingState, setMeetingState] = useState<
     "isScheduleMeeting" | "isJoiningMeeting" | "isInstantMeeting" | undefined
   >();
-  const createMeeting = () => {
-    
+  const { user } = useUser();
+  const client = useStreamVideoClient();
+  const [values, setValues] = useState({
+    dateTime: new Date(),
+    Description: "",
+    link: "",
+  });
+  const [callDetails, setCallDetails] = useState<Call>();
+  const { toast } = useToast();
+
+  const createMeeting = async () => {
+    if (!client || !user) return;
+
+    try {
+      if (!values.dateTime) {
+        toast({ title: "Please Select a date and time" });
+        return;
+      }
+
+      const id = crypto.randomUUID();
+      const call = client.call("default", id);
+      if (!call) throw new Error("Failed to create call");
+
+      const startsAt =
+        values.dateTime.toISOString() || new Date(Date.now()).toISOString();
+      const description = values.Description || "Instant Meeting";
+
+      await call.getOrCreate({
+        data: {
+          starts_at: startsAt,
+          custom: {
+            description,
+          },
+        },
+      });
+      setCallDetails(call);
+      if (!values.Description) {
+        router.push(`/meeting/${call.id}`);
+      }
+      toast({ title: "Meeting Created" });
+    } catch (error) {
+      console.log(error);
+      toast({
+        title: "Please Select a date and time",
+      });
+    }
   };
+
   return (
     <section className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-4">
       <HomeCard
