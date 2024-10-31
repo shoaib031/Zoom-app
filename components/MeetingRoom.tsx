@@ -10,7 +10,6 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
@@ -18,12 +17,12 @@ import {
 import React, { useState } from "react";
 import { LayoutList, Users } from "lucide-react";
 import { Button } from "./ui/button";
-import { useSearchParams } from "next/navigation";
+// import { useSearchParams } from "next/navigation";
 type CallLayoutType = "grid" | "speaker-left" | "speaker-right";
 
 const MeetingRoom = () => {
-  const searchParams = useSearchParams();
-  const isPersonalRoom = searchParams.get("personal");
+  // const searchParams = useSearchParams();
+  // const isPersonalRoom = searchParams.get("personal");
   const [layout, setLayout] = useState<CallLayoutType>("speaker-left");
   const [showParticipants, setShowParticipants] = useState(false);
   const CallLayout = () => {

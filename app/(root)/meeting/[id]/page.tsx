@@ -16,7 +16,7 @@ type MeetingProps = {
 };
 
 const Meeting: NextPage<MeetingProps> = ({ params }) => {
-  const { user, isLoaded } = useUser();
+  const {isLoaded } = useUser();
   const [isSetupComplete, setIsSetupComplete] = useState(false);
   const { call, isCallLoading } = useGetCallById(params.id);
   if (!isLoaded || isCallLoading) return <Loader />
