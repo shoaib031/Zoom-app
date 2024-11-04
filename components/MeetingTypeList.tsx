@@ -6,7 +6,7 @@ import MeetingModal from "./MeetingModal";
 import { useUser } from "@clerk/nextjs";
 import { Call, useStreamVideoClient } from "@stream-io/video-react-sdk";
 import { useRouter } from "next/navigation";
-import { Description } from "@radix-ui/react-alert-dialog";
+// import { Description } from "@radix-ui/react-alert-dialog";
 import { useToast } from "@/hooks/use-toast";
 
 const MeetingTypeList = () => {
@@ -16,12 +16,12 @@ const MeetingTypeList = () => {
   >();
   const { user } = useUser();
   const client = useStreamVideoClient();
-  const [values, setValues] = useState({
+  const [values] = useState({
     dateTime: new Date(),
     Description: "",
     link: "",
   });
-  const [callDetails, setCallDetails] = useState<Call>();
+  const [setCallDetails] = useState<Call>();
   const { toast } = useToast();
 
   const createMeeting = async () => {
